@@ -39,7 +39,7 @@ public class CosineSimilarity {
 		List<String> list = new ArrayList<String>();
 		for (String string : tokenList) {
 			list.add(string.toLowerCase());
-			System.out.println(string);
+			//System.out.println(string);
 		}
 		return list;
 	}
@@ -64,7 +64,7 @@ public class CosineSimilarity {
 			double percent = (double)entry.getValue() / length;
 			result.put(entry.getKey(), percent);
 			
-			System.out.println(entry.getKey() + "  " + entry.getValue());
+			//System.out.println(entry.getKey() + "  " + entry.getValue());
 		}
 		
 		return result;
@@ -88,24 +88,24 @@ public class CosineSimilarity {
 	 * get the multiple of intersection
 	 * */
 	private double getNumerator(HashMap<String, Double> map1, HashMap<String, Double> map2, Collection<String> intersection){
-		System.out.println("intersection---------------------------");
+		//System.out.println("intersection---------------------------");
 		double all = 0.0;
 		for (String string : intersection) {
-			System.out.println(string);
+			//System.out.println(string);
 			all += map1.get(string) * map2.get(string);
 		}
 		return all;
 		
 	}
 	
-	public double similarity() {
+	public double similarity(String text1, String text2) {
 		
 		// Tokenization
 		// build a splitter
 		Splitter splitter = Splitter.on(CharMatcher.anyOf(" .,;!?:(){}")).trimResults().omitEmptyStrings();
 		
-		List<String> tokens1 = getTokens(splitter, this.text1);
-		List<String> tokens2 = getTokens(splitter, this.text2);
+		List<String> tokens1 = getTokens(splitter, text1);
+		List<String> tokens2 = getTokens(splitter, text2);
 		
 		
 		
@@ -117,14 +117,14 @@ public class CosineSimilarity {
 		
 		
 		double denominator = getVectorLength(map1) * getVectorLength(map2);
-		System.out.println("denomitor:" + denominator);
+		//System.out.println("denomitor:" + denominator);
 		
 		if(denominator == 0.0){
 			return 0.0;
 		}
 		
 		double numerator = getNumerator(map1, map2, intersection);
-		System.out.println("numerator:" + numerator);
+		//System.out.println("numerator:" + numerator);
 	
 		return numerator / denominator;
 	}
@@ -135,9 +135,9 @@ public class CosineSimilarity {
 		String text2 = "My name was lili.";
 		String text3 = "My name is sitong, today is my birthday.";
 		
-		CosineSimilarity cosineSimilarity = new CosineSimilarity(text1, text3);
+		CosineSimilarity cosineSimilarity = new CosineSimilarity();
 		
-		double sim = cosineSimilarity.similarity();
+		double sim = cosineSimilarity.similarity(text1, text3);
 		System.out.println(sim);
 		
 	}

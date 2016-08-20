@@ -83,7 +83,7 @@ public class LCSSimilarity {
 	/*
 	 * func to calculate similarity.
 	 * */
-	private double similarity(String text1, String text2){
+	public double similarity(String text1, String text2){
 		
 		// 1. tokenization
 		Splitter splitter = Splitter.on(CharMatcher.anyOf(" .,;!?:(){}")).trimResults().omitEmptyStrings();
@@ -109,7 +109,7 @@ public class LCSSimilarity {
 		String text1 = "My name is sitong, I like apple";
 		String text2 = "My name IS Jin, I like apple";
 		
-		LCSSimilarity lcsSimilarity = new LCSSimilarity();
+		LCSSimilarity lcsSimilarity = new LCSSimilarity();           
 		double sim = lcsSimilarity.similarity(text1, text2);
 		System.out.println("Similarity is " + sim);
 	}
